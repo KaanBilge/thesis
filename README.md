@@ -1,6 +1,7 @@
 # Thesis
+A local-first stock research workspace.
 
-A local-first stock research workspace: current evidence, a precommitted methodology, independent bull and bear cases, and a transparent conclusion. **Not financial advice.** Scores are research judgments, not predictions or instructions to trade.
+Current evidence, a precommitted methodology, independent bull and bear cases, and a transparent conclusion. **Not financial advice.** Scores are research judgments, not predictions or instructions to trade.
 
 ## Research in Codex
 
