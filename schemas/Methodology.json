@@ -1,0 +1,87 @@
+{
+  "type": "json_schema",
+  "name": "Methodology",
+  "strict": true,
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "explanation": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 6000
+      },
+      "horizon": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 6000
+      },
+      "metrics": {
+        "minItems": 5,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "weight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "evidenceRequired": {
+              "minItems": 1,
+              "maxItems": 8,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 6000
+              }
+            },
+            "scoringGuidance": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "description",
+            "weight",
+            "rationale",
+            "evidenceRequired",
+            "scoringGuidance"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "explanation",
+      "horizon",
+      "metrics"
+    ],
+    "additionalProperties": false
+  }
+}

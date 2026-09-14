@@ -1,0 +1,735 @@
+{
+  "type": "json_schema",
+  "name": "ResearchPacket",
+  "strict": true,
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "ticker": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 11
+      },
+      "companyName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 6000
+      },
+      "sector": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 6000
+      },
+      "industry": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 6000
+      },
+      "companySourceIds": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        }
+      },
+      "businessModel": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "revenueDrivers": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "growthIndicators": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "profitability": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "valuation": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "competitivePosition": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "catalysts": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "risks": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "marketSentiment": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "uncertainties": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "interpretation",
+                "uncertainty"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "missing",
+                "uncertain",
+                "conflicting"
+              ]
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "observedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "kind",
+            "status",
+            "sourceIds",
+            "observedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "sources": {
+        "minItems": 1,
+        "maxItems": 40,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "url": {
+              "type": "string",
+              "pattern": "^https?:\\/\\/[^\\s]+$"
+            },
+            "publisher": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "publishedAt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "filing",
+                "investor_relations",
+                "news",
+                "industry",
+                "other"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "url",
+            "publisher",
+            "publishedAt",
+            "retrievedAt",
+            "type"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "asOf": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+      }
+    },
+    "required": [
+      "ticker",
+      "companyName",
+      "sector",
+      "industry",
+      "companySourceIds",
+      "businessModel",
+      "revenueDrivers",
+      "growthIndicators",
+      "profitability",
+      "valuation",
+      "competitivePosition",
+      "catalysts",
+      "risks",
+      "marketSentiment",
+      "uncertainties",
+      "sources",
+      "asOf"
+    ],
+    "additionalProperties": false
+  }
+}

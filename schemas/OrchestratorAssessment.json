@@ -1,0 +1,261 @@
+{
+  "type": "json_schema",
+  "name": "OrchestratorAssessment",
+  "strict": true,
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 6000
+      },
+      "strongestBullishFactor": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 6000
+          },
+          "claimIds": {
+            "maxItems": 40,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          },
+          "sourceIds": {
+            "maxItems": 40,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          }
+        },
+        "required": [
+          "text",
+          "claimIds",
+          "sourceIds"
+        ],
+        "additionalProperties": false
+      },
+      "strongestBearishFactor": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 6000
+          },
+          "claimIds": {
+            "maxItems": 40,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          },
+          "sourceIds": {
+            "maxItems": 40,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          }
+        },
+        "required": [
+          "text",
+          "claimIds",
+          "sourceIds"
+        ],
+        "additionalProperties": false
+      },
+      "mainUncertainty": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 6000
+          },
+          "claimIds": {
+            "maxItems": 40,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          },
+          "sourceIds": {
+            "maxItems": 40,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          }
+        },
+        "required": [
+          "text",
+          "claimIds",
+          "sourceIds"
+        ],
+        "additionalProperties": false
+      },
+      "verdictChangingConditions": {
+        "minItems": 1,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "claimIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          },
+          "required": [
+            "text",
+            "claimIds",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "metricScores": {
+        "minItems": 5,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "metricId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "weight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "bullScore": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "bearScore": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "netMetricScore": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "evidence": {
+              "minItems": 1,
+              "maxItems": 8,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 6000
+                  },
+                  "claimIds": {
+                    "maxItems": 40,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  },
+                  "sourceIds": {
+                    "maxItems": 40,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  }
+                },
+                "required": [
+                  "text",
+                  "claimIds",
+                  "sourceIds"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "explanation": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "dataQualityConfidence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            }
+          },
+          "required": [
+            "metricId",
+            "weight",
+            "bullScore",
+            "bearScore",
+            "netMetricScore",
+            "evidence",
+            "explanation",
+            "dataQualityConfidence"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "summary",
+      "strongestBullishFactor",
+      "strongestBearishFactor",
+      "mainUncertainty",
+      "verdictChangingConditions",
+      "metricScores"
+    ],
+    "additionalProperties": false
+  }
+}

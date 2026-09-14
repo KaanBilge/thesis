@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788708213450,
+      "tag": "0000_pale_black_widow",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788709203981,
+      "tag": "0001_curious_vertigo",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1789406262245,
+      "tag": "0002_majestic_blonde_phantom",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "thesis-local",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "brief:import": "tsx scripts/import-brief.ts",
+    "dev": "node scripts/next.mjs dev --hostname 127.0.0.1",
+    "build": "node scripts/next.mjs build",
+    "start": "node scripts/next.mjs start --hostname 127.0.0.1",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "db:generate": "drizzle-kit generate",
+    "schemas": "tsx scripts/export-schemas.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
+    "better-sqlite3": "^13.0.3",
+    "drizzle-orm": "^0.45.2",
+    "lucide-react": "^1.34.0",
+    "next": "16.3.4",
+    "openai": "^7.8.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "server-only": "^0.0.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.23.12",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.11"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

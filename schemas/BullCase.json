@@ -1,0 +1,304 @@
+{
+  "type": "json_schema",
+  "name": "BullCase",
+  "strict": true,
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "side": {
+        "type": "string",
+        "const": "bull"
+      },
+      "summary": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 6000
+      },
+      "arguments": {
+        "minItems": 3,
+        "maxItems": 7,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "explanation": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "evidence": {
+              "minItems": 1,
+              "maxItems": 6,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 6000
+                  },
+                  "claimIds": {
+                    "maxItems": 40,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  },
+                  "sourceIds": {
+                    "maxItems": 40,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  }
+                },
+                "required": [
+                  "text",
+                  "claimIds",
+                  "sourceIds"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "metricIds": {
+              "minItems": 1,
+              "maxItems": 8,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "counterEvidence": {
+              "minItems": 1,
+              "maxItems": 5,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 6000
+                  },
+                  "claimIds": {
+                    "maxItems": 40,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  },
+                  "sourceIds": {
+                    "maxItems": 40,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  }
+                },
+                "required": [
+                  "text",
+                  "claimIds",
+                  "sourceIds"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "title",
+            "explanation",
+            "evidence",
+            "metricIds",
+            "counterEvidence"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "catalysts": {
+        "minItems": 1,
+        "maxItems": 6,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "claimIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          },
+          "required": [
+            "text",
+            "claimIds",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "conditions": {
+        "minItems": 1,
+        "maxItems": 6,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "claimIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          },
+          "required": [
+            "text",
+            "claimIds",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "risksAndUncertainties": {
+        "minItems": 1,
+        "maxItems": 6,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 6000
+            },
+            "claimIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "sourceIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          },
+          "required": [
+            "text",
+            "claimIds",
+            "sourceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "confidence": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "metricAssessments": {
+        "minItems": 5,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "metricId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "strengthScore": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            }
+          },
+          "required": [
+            "metricId",
+            "strengthScore"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "sourceIds": {
+        "maxItems": 40,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        }
+      }
+    },
+    "required": [
+      "side",
+      "summary",
+      "arguments",
+      "catalysts",
+      "conditions",
+      "risksAndUncertainties",
+      "confidence",
+      "metricAssessments",
+      "sourceIds"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,1 @@
+CREATE INDEX `idx_analyses_identity` ON `analyses` (`ticker`,`model`,`prompt_version`,`cache_expires_at`);
