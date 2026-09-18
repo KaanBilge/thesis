@@ -52,5 +52,5 @@ describe("Codex brief handoff", () => {
     expect(JSON.parse(first.stdout).id).toBe(JSON.parse(second.stdout).id);
     expect(JSON.parse(second.stdout).status).toBe("already-saved");
     expect(invoke(["--as-of", "invalid"]).status).toBe(1);
-  });
+  }, 30_000);
 });

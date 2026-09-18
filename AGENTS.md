@@ -12,7 +12,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 For prompts such as “Research AAPL and save to Thesis”:
 
-1. Use the installed `us-stock-brief` skill for fresh US company research. Keep its evidence requirements and save `report.md` and `research-record.md` together under `reports/TICKER/YYYYMMDDTHHMMSSZ/`. For an existing completed report, reuse the files without researching or rewriting them. Respect the skill's exclusions for funds; user-requested broader research can be imported with `--kind thesis`.
+1. Use the repository's `.agents/skills/financial-brief-generator/SKILL.md` for fresh US company research. It explicitly delegates independent fresh bull, bear, synthesis and evaluator work to `gpt-6-astra` with high or greater reasoning. Quality comes first; keep cheaper models out of the baseline. Follow `.agents/skills/financial-brief-evaluator/SKILL.md` for the independent audit. Save run artifacts, `report.md` and `research-record.md` together under `reports/TICKER/YYYYMMDDTHHMMSSZ/`. Run `npm run analyst -- audit --run <research-folder>` and `npm run analyst -- render --run <research-folder>` before importing a new analyst run; unresolved major defects or stale artifacts must not be presented as audited final research. For an existing completed report, reuse the files without researching or rewriting them. Legacy two-file imports remain supported. Respect the skill's exclusions for funds; user-requested broader research can be imported with `--kind thesis`.
 2. From THIS app directory, run:
 
    `npm run brief:import -- --dir <research-folder> --company "<resolved issuer>" --model <actual-model>`

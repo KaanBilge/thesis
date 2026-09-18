@@ -1,0 +1,4 @@
+interface:
+  display_name: "Financial Brief Evaluator"
+  short_description: "Audit financial reasoning and test improvements"
+  default_prompt: "Use $financial-brief-evaluator to audit this research run against the fixed quality rubric."

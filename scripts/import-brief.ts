@@ -1,6 +1,8 @@
 import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
+import { existsSync } from "node:fs";
+import { assertPublishable } from "../src/analyst/render";
 import { loadBriefDirectory } from "../src/lib/brief-files";
 import { createBriefStore } from "../src/server/briefs";
 
@@ -14,6 +16,17 @@ try {
     console.log('Usage: npm run brief:import -- --dir reports/TICKER/YYYYMMDDTHHMMSSZ [--company "Company"] [--model gpt-6-astra] [--kind thesis] [--as-of ISO] [--ticker TICKER] [--check]\nReads report.md + research-record.md. Works with the app stopped. Repeating the same import returns the same ID. --check validates without writing.');
   } else {
     if (!values.dir) throw new Error("Provide --dir pointing to the completed research folder. Use --help for options.");
+    if (existsSync(join(values.dir, "run.json"))) {
+      const run = assertPublishable(values.dir);
+      if ((values.ticker && values.ticker.toUpperCase() !== run.run.ticker) ||
+        (values["as-of"] && Date.parse(values["as-of"]) !== Date.parse(run.run.asOf)) ||
+        (values.model && values.model !== run.synthesis.worker.model) ||
+        (values.company && values.company !== run.evidence.companyName)) throw new Error("Import overrides conflict with the audited analyst run.");
+      values.ticker = run.run.ticker;
+      values["as-of"] = run.run.asOf;
+      values.company = run.evidence.companyName;
+      values.model = run.synthesis.worker.model;
+    }
     const payload = loadBriefDirectory(values.dir, { ticker: values.ticker, company: values.company, model: values.model, kind: values.kind, asOf: values["as-of"] });
     if (values.check) console.log(JSON.stringify({ valid: true, ticker: payload.ticker, asOf: payload.asOf }));
     else {

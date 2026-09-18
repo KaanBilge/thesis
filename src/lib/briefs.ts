@@ -19,5 +19,5 @@ export type Brief = BriefInput & { id: string; contentHash: string; importedAt: 
 export type BriefSummary = Omit<Brief, "report" | "researchRecord" | "version">;
 
 export function researchPrompt(ticker: string) {
-  return `Use $us-stock-brief to research ${ticker || "AAPL"}, then save the completed brief and research record to Thesis using the project's Codex handoff instructions. Return the saved report link.`;
+  return `Use $financial-brief-generator to research ${ticker || "AAPL"} with the Astra quality baseline and independent fresh bull, bear, and evaluator subagents. Save the audited brief and research record to Thesis using the project's Codex handoff instructions. Return the saved report link and audit result.`;
 }

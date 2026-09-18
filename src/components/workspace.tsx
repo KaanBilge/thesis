@@ -1,15 +1,16 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowUpRight, BookOpen, Check, ChevronRight, FileText, FolderOpen, History, Library, LoaderCircle, Menu, Plus, RefreshCw, Scale, Search, Terminal, Trash2, X } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BookOpen, Check, ChevronRight, FileText, FolderOpen, GitBranch, History, Library, LoaderCircle, Menu, Plus, RefreshCw, Scale, Search, Terminal, Trash2, X } from "lucide-react";
 import { TickerSchema, STAGES, type HistoryItem, type Job, type SavedAnalysis, type StartResponse } from "@/lib/schemas";
 import type { Brief, BriefSummary } from "@/lib/briefs";
 import ResultView from "./result-view";
 import { BriefView } from "./brief-view";
 import { CodexHandoff } from "./codex-handoff";
+import WorkflowInspector from "./workflow-inspector";
 
 const stageLabels = { research: "Researching company", methodology: "Designing methodology", bull: "Building bull case", bear: "Building bear case", orchestrator: "Reviewing the evidence", saving: "Saving analysis" };
-type View = "library" | "analysis" | "codex";
+type View = "library" | "analysis" | "codex" | "workflows";
 type Entry = { id: string; ticker: string; companyName: string; kind: "brief" | "analysis"; label: string; date: string; verdict?: string; score?: number };
 export function relativeTime(date: string, now: number) {
   const minutes = Math.max(0, Math.floor((now - Date.parse(date)) / 60_000));
@@ -24,8 +25,8 @@ async function api<T>(path: string, options?: RequestInit): Promise<T> {
   if (!response.ok) throw new Error(data.error || "The local server could not complete this request. Try again.");
   return data;
 }
-export default function Workspace() {
-  const [view, setView] = useState<View>("library");
+export default function Workspace({ initialView = "library" }: { initialView?: View } = {}) {
+  const [view, setView] = useState<View>(initialView);
   const [ticker, setTicker] = useState("");
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
@@ -62,7 +63,7 @@ export default function Workspace() {
     function openUrl() {
       const id = new URLSearchParams(window.location.search).get("brief");
       const current = ++selection.current;
-      if (!id) { setBrief(null); return; }
+      if (!id) { setBrief(null); setView(window.location.pathname === "/workflows" ? "workflows" : "library"); return; }
       api<Brief>(`/api/briefs/${encodeURIComponent(id)}`).then(data => { if (mounted && selection.current === current) { setBrief(data); setAnalysis(null); } }).catch(e => { if (mounted && selection.current === current) setError(e.message); });
     }
     openUrl(); window.addEventListener("popstate", openUrl);
@@ -98,7 +99,7 @@ export default function Workspace() {
   function navigate(next: View) {
     if (busy) return;
     selection.current++; setView(next); setBrief(null); setAnalysis(null); setJob(null); setError(""); setMobileHistory(false);
-    window.history.pushState(null, "", window.location.pathname);
+    window.history.pushState(null, "", next === "workflows" ? "/workflows" : "/");
   }
   async function analyze(refresh = false) {
     if (busy) return;
@@ -149,16 +150,16 @@ export default function Workspace() {
     <aside className={`desk-sidebar ${mobileHistory ? "is-open" : ""}`} aria-label="Workspace navigation">
       <button className="brand" onClick={() => navigate("library")} disabled={busy} aria-label="Thesis home"><span className="brand-mark">t<span>.</span></span><span>thesis<span className="brand-period">.</span></span></button>
       <p className="brand-context">Investment research</p>
-      <nav className="desk-nav" aria-label="Main navigation"><button className={nav("library") ? "selected" : ""} disabled={busy} onClick={() => navigate("library")}><Library size={18} /> Research library <span>{entries.length}</span></button><button className={nav("analysis") ? "selected" : ""} disabled={busy} onClick={() => navigate("analysis")}><Plus size={18} /> New analysis</button><button className={nav("codex") ? "selected" : ""} disabled={busy} onClick={() => navigate("codex")}><Terminal size={18} /> Codex handoff</button></nav>
+      <nav className="desk-nav" aria-label="Main navigation"><button className={nav("library") ? "selected" : ""} disabled={busy} onClick={() => navigate("library")}><Library size={18} /> Research library <span>{entries.length}</span></button><button className={nav("analysis") ? "selected" : ""} disabled={busy} onClick={() => navigate("analysis")}><Plus size={18} /> New analysis</button><button className={nav("codex") ? "selected" : ""} disabled={busy} onClick={() => navigate("codex")}><Terminal size={18} /> Codex handoff</button><button className={nav("workflows") ? "selected" : ""} disabled={busy} onClick={() => navigate("workflows")}><GitBranch size={18} /> Research runs</button></nav>
       <div className="recent-title">Recently saved</div>
       <nav className="recent-list" aria-label="Recent research">{entries.slice(0, 6).map(item => <button key={item.id} onClick={() => openItem(item)} disabled={busy} className={brief?.id === item.id || analysis?.id === item.id ? "active" : ""}><span className="recent-symbol">{item.ticker}</span><span><strong>{item.companyName}</strong><small>{item.label}</small></span><ChevronRight size={13} /></button>)}{!entries.length && <p>Your saved briefs and analyses will appear here.</p>}</nav>
       <div className="sidebar-bottom"><FolderOpen size={18} /><div><strong>Local workspace</strong><span>Saved on this computer</span></div></div>
     </aside>
     {mobileHistory && <button className="sidebar-overlay" aria-label="Close navigation" onClick={() => setMobileHistory(false)} />}
-    <div className="desk-main"><header className="desk-topbar"><div><button className="mobile-toggle icon-button" aria-label="Toggle navigation" onClick={() => setMobileHistory(!mobileHistory)}><Menu size={20} /></button><span>Workspace</span><ChevronRight size={14} /><strong>{brief?.ticker ?? analysis?.ticker ?? (view === "library" ? "Research library" : view === "codex" ? "Codex handoff" : "New analysis")}</strong></div><span className="saved-indicator"><span /> Local storage</span></header>
+    <div className="desk-main"><header className="desk-topbar"><div><button className="mobile-toggle icon-button" aria-label="Toggle navigation" onClick={() => setMobileHistory(!mobileHistory)}><Menu size={20} /></button><span>Workspace</span><ChevronRight size={14} /><strong>{brief?.ticker ?? analysis?.ticker ?? (view === "workflows" ? "Research runs" : view === "library" ? "Research library" : view === "codex" ? "Codex handoff" : "New analysis")}</strong></div><span className="saved-indicator"><span /> Local storage</span></header>
       <main id="main-content" className="desk-content">
         {error && <div className="desk-error" role="alert"><div><strong>Request could not be completed</strong><p>{error}</p></div><button className="icon-button" aria-label="Dismiss error" onClick={() => setError("")}><X size={18} /></button></div>}
-        {brief ? <BriefView key={brief.id} brief={brief} onBack={() => navigate("library")} /> : analysis ? <><button className="text-button back-link" disabled={busy} onClick={() => navigate("library")}><ArrowLeft size={16} /> Research library</button><ResultView analysis={analysis} cached={cached} refreshing={busy} now={now} onRefresh={() => analyze(true)} /></> : view === "library" ? <>
+        {brief ? <BriefView key={brief.id} brief={brief} onBack={() => navigate("library")} /> : analysis ? <><button className="text-button back-link" disabled={busy} onClick={() => navigate("library")}><ArrowLeft size={16} /> Research library</button><ResultView analysis={analysis} cached={cached} refreshing={busy} now={now} onRefresh={() => analyze(true)} /></> : view === "workflows" ? <WorkflowInspector /> : view === "library" ? <>
           <header className="library-heading"><div><h1>Research library</h1><p>Company briefs, competing cases, and the evidence behind them.</p></div><button className="secondary-button" onClick={() => void loadLibrary().catch(e => setError(e.message))} aria-label="Refresh library"><RefreshCw size={16} /></button></header>
           <div className="library-layout"><section className="library-panel" aria-label="Saved research"><div className="library-controls"><label className="library-search"><Search size={18} /><input aria-label="Search research" placeholder="Search ticker or company" value={search} onChange={e => setSearch(e.target.value)} />{search && <button className="icon-button" aria-label="Clear search" onClick={() => setSearch("")}><X size={14} /></button>}</label><select aria-label="Filter research type" value={filter} onChange={e => setFilter(e.target.value)}><option value="all">All research</option><option value="brief">Imported briefs</option><option value="analysis">Scored analyses</option></select></div>
             {loading ? <div className="library-empty" role="status"><LoaderCircle className="spin" size={25} /><h2>Opening your library</h2></div> : !filtered.length ? <div className="library-empty"><div className="empty-document"><BookOpen size={35} strokeWidth={1.25} /></div><h2>{entries.length ? "No matching research" : "Your next idea starts here"}</h2><p>{entries.length ? "Try another company or change the filter." : "Save a company brief from Codex, then return to its evidence whenever your thesis changes."}</p><button className="text-button" onClick={() => entries.length ? (setSearch(""), setFilter("all")) : navigate("codex")}>{entries.length ? "Clear filters" : "Set up your first brief"}<ArrowUpRight size={16} /></button></div> : <div className="library-table-wrap"><table className="library-table"><caption className="sr-only">Saved briefs and stock analyses</caption><thead><tr><th scope="col">Company</th><th scope="col">Research</th><th scope="col">As of</th><th scope="col"><span className="sr-only">Actions</span></th></tr></thead><tbody>{filtered.map(item => <tr key={item.id}><td><button className="company-link" onClick={() => openItem(item)}><strong>{item.ticker}</strong><span>{item.companyName}</span></button></td><td><span className="entry-type">{item.kind === "brief" ? <FileText size={14} /> : <Scale size={14} />}{item.label}</span>{item.verdict && <small className={`entry-verdict ${item.verdict.toLowerCase()}`}>{item.verdict} / {item.score}</small>}</td><td><time dateTime={item.date}>{new Date(item.date).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</time></td><td><button className="icon-button delete-entry" onClick={() => setDeleting(item)} aria-label={`Delete ${item.ticker} ${item.label.toLowerCase()}`}><Trash2 size={15} /></button></td></tr>)}</tbody></table></div>}

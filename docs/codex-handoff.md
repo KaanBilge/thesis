@@ -2,9 +2,11 @@
 
 In a Codex task attached to this workspace, select Astra and send:
 
-> Use $us-stock-brief to research AAPL, then save the completed brief and research record to Thesis.
+> Use $financial-brief-generator to research AAPL with independent fresh Astra analysts and evaluator, then save the audited brief and research record to Thesis.
 
 The project instructions route the finished files through a deterministic importer. The import makes **zero model calls**, needs no OpenAI API key, and works when the web app is closed. Research still uses Codex tokens. This does not embed or remotely control Codex from the website; the prompt runs in your Codex task.
+
+New analyst runs include `run.json`, source/analysis artifacts, an independent `review.json`, and a rendered `publication.json`. The CLI importer revalidates the current audit, reviewed input/note hashes and report bytes before saving. It derives ticker, issuer, cutoff and actual recorded model from that run, and rejects conflicting overrides. Run `npm run analyst -- render --run <folder>` only after the audit passes. Failed/incomplete or modified reports cannot be imported as audited final runs through this CLI. Existing two-file legacy imports remain supported without claiming a new audit. See [analyst guide](analyst.md).
 
 ## Import a completed run
 
@@ -14,7 +16,7 @@ From the newer `thesis/` app:
 npm run brief:import -- --dir ../reports/AAPL/20260914T120000Z --company "Apple Inc." --model gpt-6-astra
 ```
 
-Only two existing UTF-8 files are read: `report.md` and `research-record.md`. Each must contain text and be at most 1 MB. No report text must be copied into the command. Ticker and cutoff are inferred from `TICKER/YYYYMMDDTHHMMSSZ`; use `--ticker` or `--as-of` when that convention does not match. `--as-of` is an ISO date/time with timezone. Use the actual research cutoff, not the upload time. Company defaults to ticker; model defaults to “Not recorded”. Pass only known metadata. `--kind thesis` imports broader investment theses; default is `stock-brief`.
+The imported documents are the existing UTF-8 `report.md` and `research-record.md`; each must contain text and be at most 1 MB. New analyst runs also require the audit artifacts described above. No report text must be copied into the command. For legacy two-file runs, ticker and cutoff are inferred from `TICKER/YYYYMMDDTHHMMSSZ`; use `--ticker` or `--as-of` when that convention does not match. `--as-of` is an ISO date/time with timezone. Use the actual research cutoff, not the upload time. Legacy company defaults to ticker; model defaults to “Not recorded”. Pass only known metadata. `--kind thesis` imports broader investment theses; default is `stock-brief`.
 
 Add `--check` for validation without opening or changing the database. Missing files, invalid metadata and oversized files exit nonzero. A successful import prints one compact JSON receipt:
 

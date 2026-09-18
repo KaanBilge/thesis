@@ -1,0 +1,4 @@
+interface:
+  display_name: "Financial Brief Generator"
+  short_description: "Independent stock cases and audited valuation"
+  default_prompt: "Use $financial-brief-generator to research a US-listed operating company and save an audited brief to Thesis."

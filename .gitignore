@@ -7,3 +7,5 @@ data/
 coverage/
 *.log
 .qa/
+reports/
+experiments/

@@ -5,7 +5,7 @@ Current evidence, a precommitted methodology, independent bull and bear cases, a
 
 ## Research in Codex
 
-Select Astra in a Codex task attached to this workspace and ask: **“Use $us-stock-brief to research AAPL and save it to Thesis.”** The project instructions import the completed `report.md` and `research-record.md` without another model call. No API key is needed for this handoff.
+Select Astra in a Codex task attached to this workspace and ask: **“Use $financial-brief-generator to research AAPL and save the audited brief to Thesis.”** The repository now includes an Astra-only generator and independent evaluator, source retrieval tools, deterministic valuation and a guarded report importer. All financial judgment uses Astra with high or greater reasoning; cost optimization is a later measured experiment. [Analyst setup and commands](docs/analyst.md) explains data credentials, supported methods, quality gates and limitations. No OpenAI API key is needed for this Codex workflow or its handoff.
 
 The redesigned library supports searching, filtering, direct report links, Markdown downloads, and the full evidence record. Existing scored analyses remain available under **New analysis**. [Codex handoff guide](docs/codex-handoff.md) covers the one-command importer, repeat detection, and local HTTP contract.
 
@@ -17,8 +17,7 @@ Run commands **inside this new app's `thesis` folder**. This app was created sep
 
 ```powershell
 npm install
-# Only if .env.local does not already exist:
-Copy-Item .env.example .env.local
+# Create .env.local in a text editor if needed; preserve existing settings.
 ```
 
 Edit `.env.local` in a text editor:
@@ -53,7 +52,7 @@ Change `OPENAI_MODEL` to another model supporting Responses, strict Structured O
 
 OpenAI calls run only in modules protected by `server-only`, using the official JavaScript SDK and Responses API. Requests use `store: false`, SDK logging is disabled, and the API key is never serialized into an analysis or response. Framework telemetry is disabled by the cross-platform launch script. Browser traffic stays with the local app except when you open a cited source. Research requests and frozen packets are sent to OpenAI; “local-first” does not mean offline AI or zero provider processing/retention. No cloud database, authentication, tracking, analytics, or deployment configuration is included.
 
-## AI pipeline
+## Legacy scored-analysis pipeline
 
 1. **Research:** require web search; identify the requested listing and gather dated evidence. Source URLs must occur in the Responses tool/citation provenance. Facts require a source and observation period. Missing/conflicting information is explicitly uncertainty.
 2. **Methodology:** select 5–8 unique metrics with positive integer weights totaling exactly 100. Specify company-specific rationale, evidence needs, scoring guidance, and an evaluation horizon.
@@ -65,7 +64,7 @@ Strict schemas reject unknown fields, malformed JSON, missing fields, and out-of
 
 Each API call times out after 120 seconds, with a 10-minute pipeline deadline. If one analyst fails, the other is aborted. Error responses use fixed, actionable messages and do not expose raw provider errors. No partial analysis is saved.
 
-## Scoring
+## Legacy scorecard formulas
 
 Bull and bear scores each measure the **strength of evidence for that side**, from 0 to 100. They do not have to add to 100.
 
@@ -128,6 +127,8 @@ npm start -- --port 3001
 Tests cover methodology constraints, arithmetic and verdict boundaries, independent confidence, cache keys/expiry and midnight behavior, strict JSON compatibility, citation validation, correction retries, errors, input/origin checks, SQLite history, durable duplicate protection, and the full ordered/concurrent pipeline with mocked Responses transport. Fixtures are explicitly fictional and are never seeded into the app. No real API key or paid model calls are required for tests.
 
 ## Current limitations
+
+The following limitations describe the legacy browser scorecard. The new Codex analyst's supported valuation methods, audit gates and validation limits are documented in the [analyst guide](docs/analyst.md).
 
 - Fresh AI research requires internet access, an API key, supported model tools, and sufficient account quota. If web search is unavailable, the app fails clearly rather than generating current facts from memory.
 - Web provenance proves that a URL was encountered, **not** that every interpretation accurately reflects the source. Source support, company identification, financial extraction, and confidence remain model judgments requiring human verification. Paywalls, stale filings, ambiguity, and unavailable figures can reduce quality.
