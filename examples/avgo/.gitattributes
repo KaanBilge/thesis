@@ -1,0 +1,5 @@
+# Preserve the exact research bytes across Windows and Unix checkouts.
+report.md -text
+research-record.md -text
+valuation-input.json -text
+valuation.json -text

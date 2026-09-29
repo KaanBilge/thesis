@@ -1,0 +1,4697 @@
+{
+  "schemaVersion": 1,
+  "ticker": "AVGO",
+  "asOf": "2026-09-16T21:43:41Z",
+  "horizonMonths": 12,
+  "businessType": "operating",
+  "units": {
+    "currency": "USD",
+    "priceCurrency": "USD",
+    "financialScale": "millions",
+    "shareScale": "millions"
+  },
+  "sources": [
+    {
+      "id": "q3_2026",
+      "title": "Broadcom q3_2026 earnings release and complete financial tables; publication/filing date 2026-09-02 (exact clock time unverified); availableAt is conservative known-by/observation convention, not exact publication time",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-third-quarter-fiscal-year-2026-financial",
+      "availableAt": "2026-09-03T23:59:59Z"
+    },
+    {
+      "id": "q4_2025",
+      "title": "Broadcom q4_2025 earnings release and complete financial tables; publication/filing date 2025-12-11 (exact clock time unverified); availableAt is conservative known-by/observation convention, not exact publication time",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025",
+      "availableAt": "2025-12-12T23:59:59Z"
+    },
+    {
+      "id": "k2025",
+      "title": "Broadcom k2025 SEC filing: statements and notes; publication/filing date 2025-12-18 (exact clock time unverified); availableAt is conservative known-by/observation convention, not exact publication time",
+      "url": "https://investors.broadcom.com/static-files/752e631c-b5f3-46af-9d67-bdeb658f5fa2",
+      "availableAt": "2025-12-19T23:59:59Z"
+    },
+    {
+      "id": "q2026",
+      "title": "Broadcom q2026 SEC filing: statements and notes; publication/filing date 2026-09-10 (exact clock time unverified); availableAt is conservative known-by/observation convention, not exact publication time",
+      "url": "https://investors.broadcom.com/static-files/96641754-401f-4090-a4ab-210728c83a28",
+      "availableAt": "2026-09-11T23:59:59Z"
+    },
+    {
+      "id": "price",
+      "title": "AVGO price history, Nasdaq USD (S&P Global attributed); availableAt is conservative known-by/observation convention, not exact publication time",
+      "url": "https://stockanalysis.com/stocks/avgo/history/",
+      "availableAt": "2026-09-16T20:00:00Z"
+    },
+    {
+      "id": "treasury",
+      "title": "2026 daily nominal Treasury par yield curve; availableAt is conservative known-by/observation convention, not exact publication time",
+      "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026",
+      "availableAt": "2026-09-16T00:00:00Z"
+    }
+  ],
+  "marketPrice": {
+    "value": 339.51,
+    "kind": "observed",
+    "rationale": "September 16 regular Nasdaq close; secondary price source. Observation time not webpage publication time.",
+    "sourceIds": [
+      "price"
+    ],
+    "observedAt": "2026-09-16T20:00:00Z"
+  },
+  "entryPolicy": {
+    "requiredAnnualReturn": {
+      "value": 0.12,
+      "kind": "assumption",
+      "rationale": "Analyst return hurdle; no personal suitability claim",
+      "sourceIds": [
+        "treasury"
+      ]
+    },
+    "marginOfSafety": {
+      "value": 0.2,
+      "kind": "assumption",
+      "rationale": "Analyst uncertainty allowance applied to current fair value",
+      "sourceIds": [
+        "q2026"
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "name": "bear",
+      "fairValue": {
+        "valuationDate": "2026-09-16",
+        "rationale": "bear FCFF: economic margin retains SBC, ordinary rent, R&D and recurring costs; excludes acquisition amortization. End-period nominal USD. Years 1..10 ending September 16, 2027..2036. Terminal at 2036-09-16. See build-synthesis.cjs and synthesis-calculation-notes.md.",
+        "sourceIds": [
+          "q2026",
+          "q3_2026",
+          "q4_2025",
+          "treasury"
+        ],
+        "method": "dcf_fcff",
+        "forecast": [
+          {
+            "year": 1,
+            "revenue": {
+              "value": 140000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2027-09-16: AI 90000 + nonAI 16000 + software 34000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5214285714285715,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 73000, embedded SBC 11200; acquisition amortization 7000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 12983,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 900,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 2500,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 14000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 2,
+            "revenue": {
+              "value": 164500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2028-09-16: AI 115000 + nonAI 16500 + software 33000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.49613981762917936,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 81615, embedded SBC 13160; acquisition amortization 5600 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 15599.85,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1200,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3000,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 14000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 3,
+            "revenue": {
+              "value": 176000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2029-09-16: AI 125000 + nonAI 17000 + software 34000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4873977272727273,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 85782, embedded SBC 13728; acquisition amortization 4500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 16456.4,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1500,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3200,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 7000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 4,
+            "revenue": {
+              "value": 186500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2030-09-16: AI 134000 + nonAI 17500 + software 35000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4809168900804289,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 89691, embedded SBC 14174; acquisition amortization 3400 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 18335.11,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1800,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3400,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 5,
+            "revenue": {
+              "value": 197000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2031-09-16: AI 143000 + nonAI 18000 + software 36000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4744263959390863,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 93462, embedded SBC 14578; acquisition amortization 2200 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 20261.64,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2100,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3600,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 3500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 6,
+            "revenue": {
+              "value": 207500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2032-09-16: AI 152000 + nonAI 18500 + software 37000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4679277108433735,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 97095, embedded SBC 14940; acquisition amortization 1400 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 21160.9,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2400,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3800,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 3000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 7,
+            "revenue": {
+              "value": 217000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2033-09-16: AI 160000 + nonAI 19000 + software 38000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.46534562211981567,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 100980, embedded SBC 15190; acquisition amortization 900 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 23125.4,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2700,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4000,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 2600,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 8,
+            "revenue": {
+              "value": 225500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2034-09-16: AI 167000 + nonAI 19500 + software 39000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.461019955654102,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 103960, embedded SBC 15785; acquisition amortization 500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 23910.8,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2900,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4100,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 2400,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 9,
+            "revenue": {
+              "value": 233000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2035-09-16: AI 173000 + nonAI 20000 + software 40000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.456931330472103,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 106465, embedded SBC 16310; acquisition amortization 300 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 24486.95,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3100,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4200,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 2200,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 10,
+            "revenue": {
+              "value": 239500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2036-09-16: AI 178000 + nonAI 20500 + software 41000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4530688935281837,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 108510, embedded SBC 16765; acquisition amortization 200 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 24957.3,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3300,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4300,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 2000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          }
+        ],
+        "discountRate": {
+          "value": 0.13239375,
+          "kind": "assumption",
+          "rationale": "bear WACC derived from assumed financing/risk inputs, not measured beta; see notes.",
+          "sourceIds": [
+            "treasury",
+            "q2026"
+          ]
+        },
+        "terminal": {
+          "growth": {
+            "value": 0.025,
+            "kind": "assumption",
+            "rationale": "Long-run nominal growth assumption, no perpetual AI hypergrowth.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "operatingMargin": {
+            "value": 0.44,
+            "kind": "assumption",
+            "rationale": "After SBC and ordinary costs; lower than explicit period ending margin.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "taxRate": {
+            "value": 0.23,
+            "kind": "assumption",
+            "rationale": "Normalized tax after temporary benefits expire.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "returnOnCapital": {
+            "value": 0.15,
+            "kind": "assumption",
+            "rationale": "Assumed incremental economic ROC; reinvestment g/ROC, not acquisition book ROIC.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          }
+        },
+        "bridge": {
+          "cashAndEquivalents": {
+            "value": 11975,
+            "kind": "assumption",
+            "rationale": "Reported August 2 cash carried to cutoff by assumption; reserve 12000. Horizon cash formula saved in funding-and-liquidity.json.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "debt": {
+            "value": 61079,
+            "kind": "assumption",
+            "rationale": "Principal debt; August 2 balance carried to cutoff, first-year repayment 2252; ordinary leases stay in operating costs.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "preferredEquity": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; no unsupported claim of complete liability coverage.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "nonControllingInterests": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; unquantified claims remain a limitation.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherNonOperatingAssets": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Positive remaining net contract value only; no separate gross loan asset. Unknown contract terms explicitly assumed.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherClaims": {
+            "value": 10533.618956986442,
+            "kind": "assumption",
+            "rationale": "PV net funding burden plus 0 provisional unquantified claim allowance; not an observed pension liability.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "cashTreatment": "excess_non_operating_only",
+          "shareTreatment": "fully_diluted_no_separate_option_deduction"
+        },
+        "dilutedShares": {
+          "value": 4940,
+          "kind": "assumption",
+          "rationale": "Existing diluted ownership proxy; future SBC economically cash settled, no full duplicate future dilution.",
+          "sourceIds": [
+            "q2026",
+            "q3_2026"
+          ]
+        },
+        "sensitivity": {
+          "discountRates": [
+            {
+              "value": 0.09,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.11,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.13,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.13239375,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.15,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            }
+          ],
+          "terminalGrowths": [
+            {
+              "value": 0.02,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.025,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.03,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.04,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          ]
+        }
+      },
+      "horizonValue": {
+        "valuationDate": "2027-09-16",
+        "rationale": "bear FCFF: economic margin retains SBC, ordinary rent, R&D and recurring costs; excludes acquisition amortization. End-period nominal USD. Original years 2..10 only; first year retained cash in bridge. Terminal at 2036-09-16. See build-synthesis.cjs and synthesis-calculation-notes.md.",
+        "sourceIds": [
+          "q2026",
+          "q3_2026",
+          "q4_2025",
+          "treasury"
+        ],
+        "method": "dcf_fcff",
+        "forecast": [
+          {
+            "year": 1,
+            "revenue": {
+              "value": 164500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2028-09-16: AI 115000 + nonAI 16500 + software 33000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.49613981762917936,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 81615, embedded SBC 13160; acquisition amortization 5600 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 15599.85,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1200,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3000,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 14000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 2,
+            "revenue": {
+              "value": 176000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2029-09-16: AI 125000 + nonAI 17000 + software 34000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4873977272727273,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 85782, embedded SBC 13728; acquisition amortization 4500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 16456.4,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1500,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3200,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 7000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 3,
+            "revenue": {
+              "value": 186500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2030-09-16: AI 134000 + nonAI 17500 + software 35000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4809168900804289,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 89691, embedded SBC 14174; acquisition amortization 3400 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 18335.11,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1800,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3400,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 4,
+            "revenue": {
+              "value": 197000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2031-09-16: AI 143000 + nonAI 18000 + software 36000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4744263959390863,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 93462, embedded SBC 14578; acquisition amortization 2200 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 20261.64,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2100,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3600,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 3500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 5,
+            "revenue": {
+              "value": 207500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2032-09-16: AI 152000 + nonAI 18500 + software 37000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4679277108433735,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 97095, embedded SBC 14940; acquisition amortization 1400 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 21160.9,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2400,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3800,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 3000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 6,
+            "revenue": {
+              "value": 217000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2033-09-16: AI 160000 + nonAI 19000 + software 38000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.46534562211981567,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 100980, embedded SBC 15190; acquisition amortization 900 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 23125.4,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2700,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4000,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 2600,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 7,
+            "revenue": {
+              "value": 225500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2034-09-16: AI 167000 + nonAI 19500 + software 39000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.461019955654102,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 103960, embedded SBC 15785; acquisition amortization 500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 23910.8,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2900,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4100,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 2400,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 8,
+            "revenue": {
+              "value": 233000,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2035-09-16: AI 173000 + nonAI 20000 + software 40000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.456931330472103,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 106465, embedded SBC 16310; acquisition amortization 300 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 24486.95,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3100,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4200,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 2200,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 9,
+            "revenue": {
+              "value": 239500,
+              "kind": "assumption",
+              "rationale": "bear revenue_path at 2036-09-16: AI 178000 + nonAI 20500 + software 41000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4530688935281837,
+              "kind": "assumption",
+              "rationale": "bear operating_economics EBIT 108510, embedded SBC 16765; acquisition amortization 200 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 24957.3,
+              "kind": "assumption",
+              "rationale": "bear unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3300,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4300,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 2000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          }
+        ],
+        "discountRate": {
+          "value": 0.13239375,
+          "kind": "assumption",
+          "rationale": "bear WACC derived from assumed financing/risk inputs, not measured beta; see notes.",
+          "sourceIds": [
+            "treasury",
+            "q2026"
+          ]
+        },
+        "terminal": {
+          "growth": {
+            "value": 0.025,
+            "kind": "assumption",
+            "rationale": "Long-run nominal growth assumption, no perpetual AI hypergrowth.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "operatingMargin": {
+            "value": 0.44,
+            "kind": "assumption",
+            "rationale": "After SBC and ordinary costs; lower than explicit period ending margin.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "taxRate": {
+            "value": 0.23,
+            "kind": "assumption",
+            "rationale": "Normalized tax after temporary benefits expire.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "returnOnCapital": {
+            "value": 0.15,
+            "kind": "assumption",
+            "rationale": "Assumed incremental economic ROC; reinvestment g/ROC, not acquisition book ROIC.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          }
+        },
+        "bridge": {
+          "cashAndEquivalents": {
+            "value": 17858.524000000005,
+            "kind": "assumption",
+            "rationale": "Reported August 2 cash carried to cutoff by assumption; reserve 15000. Horizon cash formula saved in funding-and-liquidity.json.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "debt": {
+            "value": 58827,
+            "kind": "assumption",
+            "rationale": "Principal debt; August 2 balance carried to cutoff, first-year repayment 2252; ordinary leases stay in operating costs.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "preferredEquity": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; no unsupported claim of complete liability coverage.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "nonControllingInterests": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; unquantified claims remain a limitation.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherNonOperatingAssets": {
+            "value": 6163.019147314914,
+            "kind": "assumption",
+            "rationale": "Positive remaining net contract value only; no separate gross loan asset. Unknown contract terms explicitly assumed.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherClaims": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "PV net funding burden plus 0 provisional unquantified claim allowance; not an observed pension liability.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "cashTreatment": "excess_non_operating_only",
+          "shareTreatment": "fully_diluted_no_separate_option_deduction"
+        },
+        "dilutedShares": {
+          "value": 4940,
+          "kind": "assumption",
+          "rationale": "Existing diluted ownership proxy; future SBC economically cash settled, no full duplicate future dilution.",
+          "sourceIds": [
+            "q2026",
+            "q3_2026"
+          ]
+        },
+        "sensitivity": {
+          "discountRates": [
+            {
+              "value": 0.09,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.11,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.13,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.13239375,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.15,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            }
+          ],
+          "terminalGrowths": [
+            {
+              "value": 0.02,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.025,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.03,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.04,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          ]
+        }
+      },
+      "dividends": [
+        {
+          "monthsFromAsOf": 0.4602739726027397,
+          "perShare": {
+            "value": 0.65,
+            "kind": "observed",
+            "rationale": "Declared payment September 30; modeled owner entitled at valuation date.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 3.484931506849315,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2026-12-31; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 6.443835616438356,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2027-03-31; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 9.435616438356163,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2027-06-30; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        }
+      ],
+      "horizonDistributionTreatment": "ex_dividend"
+    },
+    {
+      "name": "base",
+      "fairValue": {
+        "valuationDate": "2026-09-16",
+        "rationale": "base FCFF: economic margin retains SBC, ordinary rent, R&D and recurring costs; excludes acquisition amortization. End-period nominal USD. Years 1..10 ending September 16, 2027..2036. Terminal at 2036-09-16. See build-synthesis.cjs and synthesis-calculation-notes.md.",
+        "sourceIds": [
+          "q2026",
+          "q3_2026",
+          "q4_2025",
+          "treasury"
+        ],
+        "method": "dcf_fcff",
+        "forecast": [
+          {
+            "year": 1,
+            "revenue": {
+              "value": 153000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2027-09-16: AI 100000 + nonAI 17000 + software 36000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5571895424836601,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 85250, embedded SBC 11475; acquisition amortization 7000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 17531,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1224,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3060,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 16000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 2,
+            "revenue": {
+              "value": 211000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2028-09-16: AI 155000 + nonAI 18000 + software 38000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5401895734597156,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 113980, embedded SBC 15825; acquisition amortization 6000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 21656.2,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1688,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4220,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 18000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 3,
+            "revenue": {
+              "value": 254000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2029-09-16: AI 195000 + nonAI 19000 + software 40000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5299133858267716,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 134598, embedded SBC 18542; acquisition amortization 5000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 26919.600000000002,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2032,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 5080,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 13000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 4,
+            "revenue": {
+              "value": 282000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2030-09-16: AI 220000 + nonAI 20000 + software 42000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5169361702127659,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 145776, embedded SBC 20304; acquisition amortization 4000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 30612.96,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2256,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 5640,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 9000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 5,
+            "revenue": {
+              "value": 305000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2031-09-16: AI 240000 + nonAI 21000 + software 44000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5054918032786885,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 154175, embedded SBC 21350.000000000004; acquisition amortization 3000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 33918.5,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2440,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 6100,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 7000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 6,
+            "revenue": {
+              "value": 325000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2032-09-16: AI 257000 + nonAI 22000 + software 46000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.498,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 161850, embedded SBC 22425.000000000004; acquisition amortization 2100 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 35607,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2600,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 6500,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 6000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 7,
+            "revenue": {
+              "value": 343000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2033-09-16: AI 272000 + nonAI 23000 + software 48000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.49000291545189506,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 168071, embedded SBC 23324; acquisition amortization 1400 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 36975.62,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2744,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 6860,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 5000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 8,
+            "revenue": {
+              "value": 358000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2034-09-16: AI 284000 + nonAI 24000 + software 50000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.483,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 172914, embedded SBC 23986; acquisition amortization 900 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 38041.08,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2864,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7160,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 9,
+            "revenue": {
+              "value": 372000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2035-09-16: AI 295000 + nonAI 25000 + software 52000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4753978494623656,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 176848, embedded SBC 24552; acquisition amortization 500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 38906.56,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2976,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7440,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 10,
+            "revenue": {
+              "value": 385000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2036-09-16: AI 305000 + nonAI 26000 + software 54000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4685974025974026,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 180410, embedded SBC 25025; acquisition amortization 300 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 39690.2,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3080,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7700,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 3500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          }
+        ],
+        "discountRate": {
+          "value": 0.11675954999999999,
+          "kind": "assumption",
+          "rationale": "base WACC derived from assumed financing/risk inputs, not measured beta; see notes.",
+          "sourceIds": [
+            "treasury",
+            "q2026"
+          ]
+        },
+        "terminal": {
+          "growth": {
+            "value": 0.03,
+            "kind": "assumption",
+            "rationale": "Long-run nominal growth assumption, no perpetual AI hypergrowth.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "operatingMargin": {
+            "value": 0.46,
+            "kind": "assumption",
+            "rationale": "After SBC and ordinary costs; lower than explicit period ending margin.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "taxRate": {
+            "value": 0.22,
+            "kind": "assumption",
+            "rationale": "Normalized tax after temporary benefits expire.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "returnOnCapital": {
+            "value": 0.2,
+            "kind": "assumption",
+            "rationale": "Assumed incremental economic ROC; reinvestment g/ROC, not acquisition book ROIC.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          }
+        },
+        "bridge": {
+          "cashAndEquivalents": {
+            "value": 8975,
+            "kind": "assumption",
+            "rationale": "Reported August 2 cash carried to cutoff by assumption; reserve 15000. Horizon cash formula saved in funding-and-liquidity.json.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "debt": {
+            "value": 61079,
+            "kind": "assumption",
+            "rationale": "Principal debt; August 2 balance carried to cutoff, first-year repayment 2252; ordinary leases stay in operating costs.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "preferredEquity": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; no unsupported claim of complete liability coverage.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "nonControllingInterests": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; unquantified claims remain a limitation.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherNonOperatingAssets": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Positive remaining net contract value only; no separate gross loan asset. Unknown contract terms explicitly assumed.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherClaims": {
+            "value": 9849.458525598066,
+            "kind": "assumption",
+            "rationale": "PV net funding burden plus 1000 provisional unquantified claim allowance; not an observed pension liability.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "cashTreatment": "excess_non_operating_only",
+          "shareTreatment": "fully_diluted_no_separate_option_deduction"
+        },
+        "dilutedShares": {
+          "value": 4940,
+          "kind": "assumption",
+          "rationale": "Existing diluted ownership proxy; future SBC economically cash settled, no full duplicate future dilution.",
+          "sourceIds": [
+            "q2026",
+            "q3_2026"
+          ]
+        },
+        "sensitivity": {
+          "discountRates": [
+            {
+              "value": 0.09,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.11,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.11675954999999999,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.13,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.15,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            }
+          ],
+          "terminalGrowths": [
+            {
+              "value": 0.02,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.03,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.04,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          ]
+        }
+      },
+      "horizonValue": {
+        "valuationDate": "2027-09-16",
+        "rationale": "base FCFF: economic margin retains SBC, ordinary rent, R&D and recurring costs; excludes acquisition amortization. End-period nominal USD. Original years 2..10 only; first year retained cash in bridge. Terminal at 2036-09-16. See build-synthesis.cjs and synthesis-calculation-notes.md.",
+        "sourceIds": [
+          "q2026",
+          "q3_2026",
+          "q4_2025",
+          "treasury"
+        ],
+        "method": "dcf_fcff",
+        "forecast": [
+          {
+            "year": 1,
+            "revenue": {
+              "value": 211000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2028-09-16: AI 155000 + nonAI 18000 + software 38000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5401895734597156,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 113980, embedded SBC 15825; acquisition amortization 6000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 21656.2,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1688,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4220,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 18000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 2,
+            "revenue": {
+              "value": 254000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2029-09-16: AI 195000 + nonAI 19000 + software 40000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5299133858267716,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 134598, embedded SBC 18542; acquisition amortization 5000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 26919.600000000002,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2032,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 5080,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 13000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 3,
+            "revenue": {
+              "value": 282000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2030-09-16: AI 220000 + nonAI 20000 + software 42000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5169361702127659,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 145776, embedded SBC 20304; acquisition amortization 4000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 30612.96,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2256,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 5640,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 9000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 4,
+            "revenue": {
+              "value": 305000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2031-09-16: AI 240000 + nonAI 21000 + software 44000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5054918032786885,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 154175, embedded SBC 21350.000000000004; acquisition amortization 3000 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 33918.5,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2440,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 6100,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 7000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 5,
+            "revenue": {
+              "value": 325000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2032-09-16: AI 257000 + nonAI 22000 + software 46000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.498,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 161850, embedded SBC 22425.000000000004; acquisition amortization 2100 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 35607,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2600,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 6500,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 6000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 6,
+            "revenue": {
+              "value": 343000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2033-09-16: AI 272000 + nonAI 23000 + software 48000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.49000291545189506,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 168071, embedded SBC 23324; acquisition amortization 1400 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 36975.62,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2744,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 6860,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 5000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 7,
+            "revenue": {
+              "value": 358000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2034-09-16: AI 284000 + nonAI 24000 + software 50000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.483,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 172914, embedded SBC 23986; acquisition amortization 900 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 38041.08,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2864,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7160,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 8,
+            "revenue": {
+              "value": 372000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2035-09-16: AI 295000 + nonAI 25000 + software 52000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4753978494623656,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 176848, embedded SBC 24552; acquisition amortization 500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 38906.56,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2976,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7440,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 9,
+            "revenue": {
+              "value": 385000,
+              "kind": "assumption",
+              "rationale": "base revenue_path at 2036-09-16: AI 305000 + nonAI 26000 + software 54000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.4685974025974026,
+              "kind": "assumption",
+              "rationale": "base operating_economics EBIT 180410, embedded SBC 25025; acquisition amortization 300 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 39690.2,
+              "kind": "assumption",
+              "rationale": "base unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3080,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7700,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 3500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          }
+        ],
+        "discountRate": {
+          "value": 0.11675954999999999,
+          "kind": "assumption",
+          "rationale": "base WACC derived from assumed financing/risk inputs, not measured beta; see notes.",
+          "sourceIds": [
+            "treasury",
+            "q2026"
+          ]
+        },
+        "terminal": {
+          "growth": {
+            "value": 0.03,
+            "kind": "assumption",
+            "rationale": "Long-run nominal growth assumption, no perpetual AI hypergrowth.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "operatingMargin": {
+            "value": 0.46,
+            "kind": "assumption",
+            "rationale": "After SBC and ordinary costs; lower than explicit period ending margin.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "taxRate": {
+            "value": 0.22,
+            "kind": "assumption",
+            "rationale": "Normalized tax after temporary benefits expire.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "returnOnCapital": {
+            "value": 0.2,
+            "kind": "assumption",
+            "rationale": "Assumed incremental economic ROC; reinvestment g/ROC, not acquisition book ROIC.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          }
+        },
+        "bridge": {
+          "cashAndEquivalents": {
+            "value": 29048.5,
+            "kind": "assumption",
+            "rationale": "Reported August 2 cash carried to cutoff by assumption; reserve 15000. Horizon cash formula saved in funding-and-liquidity.json.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "debt": {
+            "value": 58827,
+            "kind": "assumption",
+            "rationale": "Principal debt; August 2 balance carried to cutoff, first-year repayment 2252; ordinary leases stay in operating costs.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "preferredEquity": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; no unsupported claim of complete liability coverage.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "nonControllingInterests": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; unquantified claims remain a limitation.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherNonOperatingAssets": {
+            "value": 2088.6064513301662,
+            "kind": "assumption",
+            "rationale": "Positive remaining net contract value only; no separate gross loan asset. Unknown contract terms explicitly assumed.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherClaims": {
+            "value": 1000,
+            "kind": "assumption",
+            "rationale": "PV net funding burden plus 1000 provisional unquantified claim allowance; not an observed pension liability.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "cashTreatment": "excess_non_operating_only",
+          "shareTreatment": "fully_diluted_no_separate_option_deduction"
+        },
+        "dilutedShares": {
+          "value": 4940,
+          "kind": "assumption",
+          "rationale": "Existing diluted ownership proxy; future SBC economically cash settled, no full duplicate future dilution.",
+          "sourceIds": [
+            "q2026",
+            "q3_2026"
+          ]
+        },
+        "sensitivity": {
+          "discountRates": [
+            {
+              "value": 0.09,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.11,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.11675954999999999,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.13,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.15,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            }
+          ],
+          "terminalGrowths": [
+            {
+              "value": 0.02,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.03,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.04,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          ]
+        }
+      },
+      "dividends": [
+        {
+          "monthsFromAsOf": 0.4602739726027397,
+          "perShare": {
+            "value": 0.65,
+            "kind": "observed",
+            "rationale": "Declared payment September 30; modeled owner entitled at valuation date.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 3.484931506849315,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2026-12-31; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 6.443835616438356,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2027-03-31; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 9.435616438356163,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2027-06-30; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        }
+      ],
+      "horizonDistributionTreatment": "ex_dividend"
+    },
+    {
+      "name": "bull",
+      "fairValue": {
+        "valuationDate": "2026-09-16",
+        "rationale": "bull FCFF: economic margin retains SBC, ordinary rent, R&D and recurring costs; excludes acquisition amortization. End-period nominal USD. Years 1..10 ending September 16, 2027..2036. Terminal at 2036-09-16. See build-synthesis.cjs and synthesis-calculation-notes.md.",
+        "sourceIds": [
+          "q2026",
+          "q3_2026",
+          "q4_2025",
+          "treasury"
+        ],
+        "method": "dcf_fcff",
+        "forecast": [
+          {
+            "year": 1,
+            "revenue": {
+              "value": 166800,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2027-09-16: AI 110000 + nonAI 17800 + software 39000; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.6,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 100080, embedded SBC 10000; acquisition amortization 7200 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 19199.600000000002,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 1334.4,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 3002.3999999999996,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 18000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 2,
+            "revenue": {
+              "value": 257400,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2028-09-16: AI 195000 + nonAI 18900 + software 43500; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.59,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 151866, embedded SBC 13000; acquisition amortization 6500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 27335.879999999997,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2059.2,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4633.2,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 22000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 3,
+            "revenue": {
+              "value": 322750,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2029-09-16: AI 255000 + nonAI 19900 + software 47850; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.575,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 185581.25, embedded SBC 16000; acquisition amortization 5500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 35260.4375,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2582,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 5809.5,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 15000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 4,
+            "revenue": {
+              "value": 372580,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2030-09-16: AI 300000 + nonAI 20900 + software 51680; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.56,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 208644.80000000002, embedded SBC 18500; acquisition amortization 4500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 41728.96000000001,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2980.64,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 6706.44,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 10000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 5,
+            "revenue": {
+              "value": 410198,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2031-09-16: AI 333000 + nonAI 21900 + software 55298; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.55,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 225608.90000000002, embedded SBC 21000; acquisition amortization 3500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 47377.869000000006,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3281.5840000000003,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7383.563999999999,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 7500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 6,
+            "revenue": {
+              "value": 441616,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2032-09-16: AI 360000 + nonAI 23000 + software 58616; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.54,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 238472.64, embedded SBC 23000; acquisition amortization 2500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 50079.2544,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3532.928,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7949.088,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 6500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 7,
+            "revenue": {
+              "value": 467547,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2033-09-16: AI 382000 + nonAI 24000 + software 61547; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.53,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 247799.91, embedded SBC 24500; acquisition amortization 1800 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 52037.9811,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3740.376,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 8415.846,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 5500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 8,
+            "revenue": {
+              "value": 490624,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2034-09-16: AI 401000 + nonAI 25000 + software 64624; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.52,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 255124.48, embedded SBC 25500; acquisition amortization 1200 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 53576.1408,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3924.992,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 8831.232,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 9,
+            "revenue": {
+              "value": 510209,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2035-09-16: AI 417000 + nonAI 26000 + software 67209; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.51,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 260206.59, embedded SBC 26500; acquisition amortization 800 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 54643.3839,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 4081.672,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 9183.761999999999,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 10,
+            "revenue": {
+              "value": 526897,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2036-09-16: AI 430000 + nonAI 27000 + software 69897; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 263448.5, embedded SBC 27500; acquisition amortization 500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 55324.185,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 4215.176,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 9484.145999999999,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 3500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          }
+        ],
+        "discountRate": {
+          "value": 0.102302,
+          "kind": "assumption",
+          "rationale": "bull WACC derived from assumed financing/risk inputs, not measured beta; see notes.",
+          "sourceIds": [
+            "treasury",
+            "q2026"
+          ]
+        },
+        "terminal": {
+          "growth": {
+            "value": 0.03,
+            "kind": "assumption",
+            "rationale": "Long-run nominal growth assumption, no perpetual AI hypergrowth.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "operatingMargin": {
+            "value": 0.48,
+            "kind": "assumption",
+            "rationale": "After SBC and ordinary costs; lower than explicit period ending margin.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "taxRate": {
+            "value": 0.21,
+            "kind": "assumption",
+            "rationale": "Normalized tax after temporary benefits expire.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "returnOnCapital": {
+            "value": 0.25,
+            "kind": "assumption",
+            "rationale": "Assumed incremental economic ROC; reinvestment g/ROC, not acquisition book ROIC.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          }
+        },
+        "bridge": {
+          "cashAndEquivalents": {
+            "value": 5975,
+            "kind": "assumption",
+            "rationale": "Reported August 2 cash carried to cutoff by assumption; reserve 18000. Horizon cash formula saved in funding-and-liquidity.json.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "debt": {
+            "value": 61079,
+            "kind": "assumption",
+            "rationale": "Principal debt; August 2 balance carried to cutoff, first-year repayment 2252; ordinary leases stay in operating costs.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "preferredEquity": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; no unsupported claim of complete liability coverage.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "nonControllingInterests": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; unquantified claims remain a limitation.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherNonOperatingAssets": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Positive remaining net contract value only; no separate gross loan asset. Unknown contract terms explicitly assumed.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherClaims": {
+            "value": 4180.1057663888605,
+            "kind": "assumption",
+            "rationale": "PV net funding burden plus 1000 provisional unquantified claim allowance; not an observed pension liability.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "cashTreatment": "excess_non_operating_only",
+          "shareTreatment": "fully_diluted_no_separate_option_deduction"
+        },
+        "dilutedShares": {
+          "value": 4940,
+          "kind": "assumption",
+          "rationale": "Existing diluted ownership proxy; future SBC economically cash settled, no full duplicate future dilution.",
+          "sourceIds": [
+            "q2026",
+            "q3_2026"
+          ]
+        },
+        "sensitivity": {
+          "discountRates": [
+            {
+              "value": 0.09,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.102302,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.11,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.13,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.15,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            }
+          ],
+          "terminalGrowths": [
+            {
+              "value": 0.02,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.03,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.04,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          ]
+        }
+      },
+      "horizonValue": {
+        "valuationDate": "2027-09-16",
+        "rationale": "bull FCFF: economic margin retains SBC, ordinary rent, R&D and recurring costs; excludes acquisition amortization. End-period nominal USD. Original years 2..10 only; first year retained cash in bridge. Terminal at 2036-09-16. See build-synthesis.cjs and synthesis-calculation-notes.md.",
+        "sourceIds": [
+          "q2026",
+          "q3_2026",
+          "q4_2025",
+          "treasury"
+        ],
+        "method": "dcf_fcff",
+        "forecast": [
+          {
+            "year": 1,
+            "revenue": {
+              "value": 257400,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2028-09-16: AI 195000 + nonAI 18900 + software 43500; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.59,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 151866, embedded SBC 13000; acquisition amortization 6500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 27335.879999999997,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2059.2,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 4633.2,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 22000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 2,
+            "revenue": {
+              "value": 322750,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2029-09-16: AI 255000 + nonAI 19900 + software 47850; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.575,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 185581.25, embedded SBC 16000; acquisition amortization 5500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 35260.4375,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2582,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 5809.5,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 15000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 3,
+            "revenue": {
+              "value": 372580,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2030-09-16: AI 300000 + nonAI 20900 + software 51680; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.56,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 208644.80000000002, embedded SBC 18500; acquisition amortization 4500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 41728.96000000001,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 2980.64,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 6706.44,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 10000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 4,
+            "revenue": {
+              "value": 410198,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2031-09-16: AI 333000 + nonAI 21900 + software 55298; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.55,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 225608.90000000002, embedded SBC 21000; acquisition amortization 3500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 47377.869000000006,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3281.5840000000003,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7383.563999999999,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 7500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 5,
+            "revenue": {
+              "value": 441616,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2032-09-16: AI 360000 + nonAI 23000 + software 58616; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.54,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 238472.64, embedded SBC 23000; acquisition amortization 2500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 50079.2544,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3532.928,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 7949.088,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 6500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 6,
+            "revenue": {
+              "value": 467547,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2033-09-16: AI 382000 + nonAI 24000 + software 61547; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.53,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 247799.91, embedded SBC 24500; acquisition amortization 1800 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 52037.9811,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3740.376,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 8415.846,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 5500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 7,
+            "revenue": {
+              "value": 490624,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2034-09-16: AI 401000 + nonAI 25000 + software 64624; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.52,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 255124.48, embedded SBC 25500; acquisition amortization 1200 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 53576.1408,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 3924.992,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 8831.232,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 8,
+            "revenue": {
+              "value": 510209,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2035-09-16: AI 417000 + nonAI 26000 + software 67209; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.51,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 260206.59, embedded SBC 26500; acquisition amortization 800 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 54643.3839,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 4081.672,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 9183.761999999999,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 4000,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          },
+          {
+            "year": 9,
+            "revenue": {
+              "value": 526897,
+              "kind": "assumption",
+              "rationale": "bull revenue_path at 2036-09-16: AI 430000 + nonAI 27000 + software 69897; scenario estimates, not reported guidance.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "operatingMargin": {
+              "value": 0.5,
+              "kind": "assumption",
+              "rationale": "bull operating_economics EBIT 263448.5, embedded SBC 27500; acquisition amortization 500 excluded, no SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "cashTaxes": {
+              "value": 55324.185,
+              "kind": "assumption",
+              "rationale": "bull unlevered cash_tax; temporary deductions/payable settlement per schedule. Interest shield excluded.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "depreciation": {
+              "value": 4215.176,
+              "kind": "assumption",
+              "rationale": "Only noncash costs retained in economic EBIT; no acquired amortization/SBC addback.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "capitalExpenditure": {
+              "value": 9484.145999999999,
+              "kind": "assumption",
+              "rationale": "PP&E and modeled capitalized investment; no duplicated ordinary purchase COGS.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            "changeWorkingCapital": {
+              "value": 3500,
+              "kind": "assumption",
+              "rationale": "Incremental operating receivables, inventory/prepayments less payable funding; customer notes separately in bridge.",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          }
+        ],
+        "discountRate": {
+          "value": 0.102302,
+          "kind": "assumption",
+          "rationale": "bull WACC derived from assumed financing/risk inputs, not measured beta; see notes.",
+          "sourceIds": [
+            "treasury",
+            "q2026"
+          ]
+        },
+        "terminal": {
+          "growth": {
+            "value": 0.03,
+            "kind": "assumption",
+            "rationale": "Long-run nominal growth assumption, no perpetual AI hypergrowth.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "operatingMargin": {
+            "value": 0.48,
+            "kind": "assumption",
+            "rationale": "After SBC and ordinary costs; lower than explicit period ending margin.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "taxRate": {
+            "value": 0.21,
+            "kind": "assumption",
+            "rationale": "Normalized tax after temporary benefits expire.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "returnOnCapital": {
+            "value": 0.25,
+            "kind": "assumption",
+            "rationale": "Assumed incremental economic ROC; reinvestment g/ROC, not acquisition book ROIC.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          }
+        },
+        "bridge": {
+          "cashAndEquivalents": {
+            "value": 43352.399999999994,
+            "kind": "assumption",
+            "rationale": "Reported August 2 cash carried to cutoff by assumption; reserve 18000. Horizon cash formula saved in funding-and-liquidity.json.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "debt": {
+            "value": 58827,
+            "kind": "assumption",
+            "rationale": "Principal debt; August 2 balance carried to cutoff, first-year repayment 2252; ordinary leases stay in operating costs.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "preferredEquity": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; no unsupported claim of complete liability coverage.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "nonControllingInterests": {
+            "value": 0,
+            "kind": "assumption",
+            "rationale": "Modeling zero; unquantified claims remain a limitation.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherNonOperatingAssets": {
+            "value": 2489.1632339066964,
+            "kind": "assumption",
+            "rationale": "Positive remaining net contract value only; no separate gross loan asset. Unknown contract terms explicitly assumed.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "otherClaims": {
+            "value": 1000,
+            "kind": "assumption",
+            "rationale": "PV net funding burden plus 1000 provisional unquantified claim allowance; not an observed pension liability.",
+            "sourceIds": [
+              "q2026",
+              "q3_2026"
+            ]
+          },
+          "cashTreatment": "excess_non_operating_only",
+          "shareTreatment": "fully_diluted_no_separate_option_deduction"
+        },
+        "dilutedShares": {
+          "value": 4940,
+          "kind": "assumption",
+          "rationale": "Existing diluted ownership proxy; future SBC economically cash settled, no full duplicate future dilution.",
+          "sourceIds": [
+            "q2026",
+            "q3_2026"
+          ]
+        },
+        "sensitivity": {
+          "discountRates": [
+            {
+              "value": 0.09,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.102302,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.11,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.13,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            },
+            {
+              "value": 0.15,
+              "kind": "assumption",
+              "rationale": "WACC sensitivity probe",
+              "sourceIds": [
+                "treasury"
+              ]
+            }
+          ],
+          "terminalGrowths": [
+            {
+              "value": 0.02,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.03,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            },
+            {
+              "value": 0.04,
+              "kind": "assumption",
+              "rationale": "Nominal terminal growth sensitivity probe",
+              "sourceIds": [
+                "q2026",
+                "q3_2026"
+              ]
+            }
+          ]
+        }
+      },
+      "dividends": [
+        {
+          "monthsFromAsOf": 0.4602739726027397,
+          "perShare": {
+            "value": 0.65,
+            "kind": "observed",
+            "rationale": "Declared payment September 30; modeled owner entitled at valuation date.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 3.484931506849315,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2026-12-31; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 6.443835616438356,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2027-03-31; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        },
+        {
+          "monthsFromAsOf": 9.435616438356163,
+          "perShare": {
+            "value": 0.65,
+            "kind": "assumption",
+            "rationale": "Assumed payment 2027-06-30; not yet declared.",
+            "sourceIds": [
+              "q3_2026"
+            ]
+          }
+        }
+      ],
+      "horizonDistributionTreatment": "ex_dividend"
+    }
+  ]
+}
